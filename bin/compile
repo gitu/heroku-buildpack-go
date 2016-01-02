@@ -267,7 +267,9 @@ then
       go install -v "${FLAGS[@]}" $pkgs
     else
       step "Running: godep godep restore"
-      GOPATH=$(godep path) godep restore
+      GOPATH=$(godep path) godep restore -v
+      step "Running: godep save -r -v $pkgs"
+      godep save -r -v $pkgs
       step "Running: godep go install ${FLAGS[@]} $pkgs"
       godep go install "${FLAGS[@]}" $pkgs
     fi
