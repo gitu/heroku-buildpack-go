@@ -269,8 +269,10 @@ then
       step "Running: godep godep restore"
       godep restore
       if test -e $build/db/dbconf.yml
-          step "also installing goose"
+      then
+          step "installing goose"
           go get bitbucket.org/liamstask/goose/cmd/goose
+      fi
       step "Running: godep go install ${FLAGS[@]} $pkgs"
       godep go install "${FLAGS[@]}" $pkgs
     fi
